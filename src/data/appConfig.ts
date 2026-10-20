@@ -45,21 +45,30 @@ function readEnv(key: string): string | null {
   return value && value.trim().length > 0 ? value.trim() : null;
 }
 
+function resolveApkUrl(envUrl: string | null): string {
+  const url = envUrl ?? 'https://pub-62ea8e4d6d7146b380084a625466968f.r2.dev/Harmoniq.apk';
+  const trimmed = url.trim().replace(/\/+$/, '');
+  if (trimmed === 'https://pub-62ea8e4d6d7146b380084a625466968f.r2.dev') {
+    return `${trimmed}/Harmoniq.apk`;
+  }
+  return trimmed;
+}
+
 export const appConfig: AppConfig = {
   name: 'Harmoniq',
   shortDescription: 'Your Music. Your Space.',
   fullDescription:
     'A music experience designed around your library, your preferences, and the way you listen.',
 
-  // --- Release information (placeholders) ---
-  version: null, // e.g. '1.0.0'
-  apkSize: null, // e.g. '24 MB'
-  minAndroid: null, // e.g. 'Android 8.0 (Oreo) or higher'
-  releaseDate: null, // e.g. '2025-01-15'
+  // --- Release information ---
+  version: '1.0.0',
+  apkSize: '108 MB',
+  minAndroid: 'Android 8.0+',
+  releaseDate: '2026-10-20',
 
   // --- Download ---
-  // Set VITE_APK_DOWNLOAD_URL in .env or hardcode here once the APK is hosted.
-  apkDownloadUrl: readEnv('VITE_APK_DOWNLOAD_URL'),
+  // Set VITE_APK_DOWNLOAD_URL in .env or defaults to the hosted R2 APK.
+  apkDownloadUrl: resolveApkUrl(readEnv('VITE_APK_DOWNLOAD_URL')),
 
   // --- Legal & Contact ---
   privacyPolicyUrl: readEnv('VITE_PRIVACY_POLICY_URL'),
