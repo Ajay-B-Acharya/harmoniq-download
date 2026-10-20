@@ -1,4 +1,4 @@
-import { useState, useRef, useId } from 'react';
+import { useState, useId } from 'react';
 import { ChevronDown } from 'lucide-react';
 import type { FAQItem as FAQItemType } from '@/data/faq';
 
@@ -13,12 +13,15 @@ export default function FAQItem({
   defaultOpen = false,
 }: FAQItemProps) {
   const [isOpen, setIsOpen] = useState(defaultOpen);
-  const contentRef = useRef<HTMLDivElement>(null);
   const headingId = useId();
   const panelId = useId();
 
   return (
-    <div className="surface-card overflow-hidden">
+    <div
+      className={`surface-card overflow-hidden transition-colors duration-200 ${
+        isOpen ? 'border-border-strong' : ''
+      }`}
+    >
       <h3>
         <button
           type="button"
@@ -26,12 +29,12 @@ export default function FAQItem({
           aria-expanded={isOpen}
           aria-controls={panelId}
           onClick={() => setIsOpen((prev) => !prev)}
-          className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left text-text-primary transition-colors hover:bg-bg-elevated"
+          className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left text-text-primary transition-colors duration-200 hover:bg-bg-elevated/50"
         >
-          <span className="text-base font-medium">{item.question}</span>
+          <span className="text-[0.95rem] font-medium">{item.question}</span>
           <ChevronDown
-            size={20}
-            className={`shrink-0 text-text-secondary transition-transform duration-200 ${
+            size={18}
+            className={`shrink-0 text-text-secondary transition-transform duration-300 ${
               isOpen ? 'rotate-180' : ''
             }`}
             aria-hidden="true"
@@ -41,10 +44,10 @@ export default function FAQItem({
 
       <div
         id={panelId}
-        ref={contentRef}
         role="region"
         aria-labelledby={headingId}
         hidden={!isOpen}
+        className="transition-all duration-300"
       >
         <div className="border-t border-border-subtle px-5 py-4">
           <p className="text-sm leading-relaxed text-text-secondary">

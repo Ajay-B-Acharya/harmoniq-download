@@ -44,7 +44,7 @@ export default function DownloadSection() {
           description="Download the latest APK to install Harmoniq on your Android device. Release information will appear here once available."
         />
 
-        <div className="mx-auto mt-12 max-w-2xl surface-card p-8 sm:p-10">
+        <div className="mx-auto mt-12 max-w-2xl surface-elevated p-8 sm:p-10">
           {/* Release info grid */}
           <dl className="grid grid-cols-1 gap-6 sm:grid-cols-2">
             <InfoRow

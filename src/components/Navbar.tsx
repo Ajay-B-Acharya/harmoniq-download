@@ -35,7 +35,7 @@ export default function Navbar() {
 
   return (
     <header
-      className="sticky top-0 z-50 border-b border-border-subtle bg-bg-base/80 backdrop-blur-md"
+      className="sticky top-0 z-50 border-b border-border-subtle bg-bg-base/85 backdrop-blur-md"
       role="banner"
     >
       <nav
@@ -64,10 +64,7 @@ export default function Navbar() {
         <ul className="hidden items-center gap-8 md:flex">
           {NAV_LINKS.map((link) => (
             <li key={link.href}>
-              <a
-                href={link.href}
-                className="text-sm text-text-secondary transition-colors hover:text-text-primary"
-              >
+              <a href={link.href} className="nav-link">
                 {link.label}
               </a>
             </li>
@@ -78,7 +75,7 @@ export default function Navbar() {
         <div className="hidden md:block">
           <a
             href="#download"
-            className="inline-flex items-center gap-2 border border-border-accent bg-accent-primary/10 px-4 py-2 text-sm font-medium text-accent-primary transition-colors hover:bg-accent-primary/20"
+            className="btn-primary"
             aria-label="Download Harmoniq"
           >
             <Download size={16} aria-hidden="true" />
@@ -121,7 +118,7 @@ export default function Navbar() {
               <a
                 href="#download"
                 onClick={handleNavClick}
-                className="flex items-center justify-center gap-2 border border-border-accent bg-accent-primary/10 px-4 py-3 text-sm font-medium text-accent-primary transition-colors hover:bg-accent-primary/20"
+                className="btn-primary w-full justify-center"
               >
                 <Download size={16} aria-hidden="true" />
                 Download

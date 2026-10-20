@@ -12,19 +12,16 @@ export default function DownloadButton({
   size = 'md',
   fullWidth = false,
 }: DownloadButtonProps) {
-  const sizeClasses =
-    size === 'lg'
-      ? 'px-8 py-3.5 text-base'
-      : 'px-5 py-2.5 text-sm';
-
-  const widthClass = fullWidth ? 'w-full justify-center' : 'inline-flex';
+  const baseClass = size === 'lg' ? 'btn-primary-lg' : 'btn-primary';
+  const disabledClass = size === 'lg' ? 'btn-disabled-lg' : 'btn-disabled';
+  const widthClass = fullWidth ? ' w-full' : '';
 
   if (isDownloadAvailable && appConfig.apkDownloadUrl) {
     return (
       <a
         href={appConfig.apkDownloadUrl}
         download
-        className={`${widthClass} ${sizeClasses} inline-flex items-center gap-2 border border-border-accent bg-accent-primary/10 font-medium text-accent-primary transition-colors hover:bg-accent-primary/20`}
+        className={`${baseClass}${widthClass}`}
         aria-label={`Download ${appConfig.name} APK`}
       >
         <Download size={20} aria-hidden="true" />
@@ -36,7 +33,7 @@ export default function DownloadButton({
   // Disabled / placeholder state — download is not yet configured.
   return (
     <span
-      className={`${widthClass} ${sizeClasses} inline-flex cursor-not-allowed items-center gap-2 border border-border-subtle bg-bg-surface font-medium text-text-muted`}
+      className={`${disabledClass}${widthClass}`}
       aria-disabled="true"
       role="button"
       tabIndex={0}

@@ -6,22 +6,34 @@
 :root {
   /* Backgrounds */
   --color-bg-base: #0a0a0c; /* near-black */
-  --color-bg-surface: #141418; /* slightly lighter charcoal */
-  --color-bg-elevated: #1c1c22; /* elevated cards */
+  --color-bg-surface: #121216; /* dark graphite */
+  --color-bg-elevated: #1a1a20; /* elevated cards */
 
   /* Accents */
   --color-accent-primary: #22d3ee; /* electric cyan */
-  --color-accent-secondary: #3b82f6; /* subtle blue */
+  --color-accent-secondary: #3b82f6; /* muted blue */
   --color-accent-hover: #06b6d4; /* darker cyan for hover */
 
   /* Text */
   --color-text-primary: #f1f5f9; /* soft white */
-  --color-text-secondary: #94a3b8; /* muted gray */
+  --color-text-secondary: #94a3b8; /* cool gray */
   --color-text-muted: #64748b; /* dimmer gray */
 
   /* Borders */
-  --color-border-subtle: rgba(148, 163, 184, 0.12);
-  --color-border-accent: rgba(34, 211, 238, 0.35);
+  --color-border-subtle: rgba(148, 163, 184, 0.1);
+  --color-border-strong: rgba(148, 163, 184, 0.18);
+  --color-border-accent: rgba(34, 211, 238, 0.3);
+
+  /* Typography Scale */
+  --font-size-xs: 0.75rem; /* 12px */
+  --font-size-sm: 0.875rem; /* 14px */
+  --font-size-base: 1rem; /* 16px */
+  --font-size-lg: 1.125rem; /* 18px */
+  --font-size-xl: 1.25rem; /* 20px */
+  --font-size-2xl: 1.5rem; /* 24px */
+  --font-size-3xl: 1.875rem; /* 30px */
+  --font-size-4xl: 2.25rem; /* 36px */
+  --font-size-5xl: 3rem; /* 48px */
 }
 
 /* ── Base ─────────────────────────────────────────────────────── */
@@ -54,7 +66,7 @@
     border-radius: 4px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: var(--color-border-subtle);
+    background: var(--color-border-strong);
   }
 }
 
@@ -67,16 +79,69 @@
 
   /* Section vertical spacing */
   .section-py {
-    @apply py-16 sm:py-20 lg:py-28;
+    @apply py-16 sm:py-20 lg:py-24;
   }
 
   /* Card surface */
   .surface-card {
-    @apply rounded-2xl border border-border-subtle bg-bg-surface transition-colors duration-200;
+    @apply rounded-2xl border border-border-subtle bg-bg-surface transition-all duration-200;
   }
 
   .surface-elevated {
-    @apply rounded-2xl border border-border-subtle bg-bg-elevated transition-colors duration-200;
+    @apply rounded-2xl border border-border-subtle bg-bg-elevated transition-all duration-200;
+  }
+
+  /* Nav link with animated underline */
+  .nav-link {
+    @apply relative text-sm text-text-secondary transition-colors duration-200 hover:text-text-primary;
+  }
+  .nav-link::after {
+    content: '';
+    @apply absolute -bottom-1 left-0 h-px w-0 bg-accent-primary transition-all duration-200;
+  }
+  .nav-link:hover::after {
+    @apply w-full;
+  }
+  .nav-link:focus-visible::after {
+    @apply w-full;
+  }
+
+  /* Primary button — bordered, no pill */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 border px-5 py-2.5 text-sm font-medium transition-all duration-200;
+    border-color: var(--color-border-accent);
+    background-color: rgba(34, 211, 238, 0.1);
+    color: var(--color-accent-primary);
+  }
+  .btn-primary:hover {
+    background-color: rgba(34, 211, 238, 0.15);
+    border-color: var(--color-accent-primary);
+  }
+  .btn-primary-lg {
+    @apply inline-flex items-center justify-center gap-2 border px-7 py-3.5 text-base font-medium transition-all duration-200;
+    border-color: var(--color-border-accent);
+    background-color: rgba(34, 211, 238, 0.1);
+    color: var(--color-accent-primary);
+  }
+  .btn-primary-lg:hover {
+    background-color: rgba(34, 211, 238, 0.15);
+    border-color: var(--color-accent-primary);
+  }
+
+  /* Secondary / text button */
+  .btn-secondary {
+    @apply inline-flex items-center gap-2 px-5 py-2.5 text-sm font-medium text-text-secondary transition-colors duration-200 hover:text-text-primary;
+  }
+  .btn-secondary-lg {
+    @apply inline-flex items-center gap-2 px-6 py-3.5 text-base font-medium text-text-secondary transition-colors duration-200 hover:text-text-primary;
+  }
+
+  /* Disabled button state */
+  .btn-disabled {
+    @apply inline-flex cursor-not-allowed items-center justify-center gap-2 border border-border-subtle bg-bg-surface px-5 py-2.5 text-sm font-medium text-text-muted;
+  }
+  .btn-disabled-lg {
+    @apply inline-flex cursor-not-allowed items-center justify-center gap-2 border border-border-subtle bg-bg-surface px-7 py-3.5 text-base font-medium text-text-muted;
   }
 }
 

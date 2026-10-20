@@ -49,7 +49,7 @@ export const appConfig: AppConfig = {
   name: 'Harmoniq',
   shortDescription: 'Your Music. Your Space.',
   fullDescription:
-    'Discover a music experience designed around you. Explore your library, find your favorite tracks, and enjoy a player built for a more personal listening experience.',
+    'A music experience designed around your library, your preferences, and the way you listen.',
 
   // --- Release information (placeholders) ---
   version: null, // e.g. '1.0.0'

@@ -21,15 +21,15 @@ export default function SectionHeading({
   return (
     <div className={`max-w-2xl ${alignmentClasses}`}>
       {eyebrow && (
-        <p className="mb-3 text-sm font-medium uppercase tracking-wider text-accent-primary">
+        <p className="mb-3 text-xs font-medium uppercase tracking-[0.15em] text-accent-primary">
           {eyebrow}
         </p>
       )}
-      <HeadingTag className="text-2xl font-semibold tracking-tight text-text-primary sm:text-3xl lg:text-4xl">
+      <HeadingTag className="text-2xl font-semibold tracking-tight text-text-primary sm:text-3xl">
         {title}
       </HeadingTag>
       {description && (
-        <p className="mt-4 text-base leading-relaxed text-text-secondary sm:text-lg">
+        <p className="mt-4 text-base leading-relaxed text-text-secondary">
           {description}
         </p>
       )}

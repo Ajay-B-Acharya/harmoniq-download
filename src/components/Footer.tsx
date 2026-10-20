@@ -17,9 +17,9 @@ export default function Footer() {
       role="contentinfo"
     >
       <div className="container-px py-12">
-        <div className="flex flex-col gap-10 md:flex-row md:justify-between">
+        <div className="flex flex-col gap-10 sm:flex-row sm:justify-between">
           {/* Brand */}
-          <div className="max-w-xs">
+          <div className="max-w-sm">
             <div className="flex items-center gap-2.5">
               <img
                 src="/logo.svg"
@@ -40,12 +40,12 @@ export default function Footer() {
 
           {/* Navigation links */}
           <nav aria-label="Footer navigation">
-            <ul className="grid grid-cols-2 gap-x-8 gap-y-3 sm:grid-cols-3">
+            <ul className="grid grid-cols-2 gap-x-10 gap-y-3 sm:grid-cols-3">
               {NAV_LINKS.map((link) => (
                 <li key={link.href}>
                   <a
                     href={link.href}
-                    className="text-sm text-text-secondary transition-colors hover:text-text-primary"
+                    className="text-sm text-text-secondary transition-colors duration-200 hover:text-text-primary"
                   >
                     {link.label}
                   </a>
@@ -55,7 +55,7 @@ export default function Footer() {
                 {appConfig.privacyPolicyUrl ? (
                   <a
                     href={appConfig.privacyPolicyUrl}
-                    className="text-sm text-text-secondary transition-colors hover:text-text-primary"
+                    className="text-sm text-text-secondary transition-colors duration-200 hover:text-text-primary"
                   >
                     Privacy Policy
                   </a>
@@ -69,7 +69,7 @@ export default function Footer() {
                 {appConfig.contactEmail ? (
                   <a
                     href={`mailto:${appConfig.contactEmail}`}
-                    className="text-sm text-text-secondary transition-colors hover:text-text-primary"
+                    className="text-sm text-text-secondary transition-colors duration-200 hover:text-text-primary"
                   >
                     Contact
                   </a>

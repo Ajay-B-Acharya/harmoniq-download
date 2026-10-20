@@ -15,14 +15,16 @@ export default function ScreenshotGallery() {
       {screenshots.map((screenshot, index) => (
         <figure
           key={index}
-          className="surface-elevated overflow-hidden p-2"
+          className="surface-elevated group overflow-hidden p-2.5 transition-colors duration-200 hover:border-border-strong"
         >
-          <img
-            src={screenshot.src}
-            alt={screenshot.alt}
-            loading="lazy"
-            className="w-full rounded-xl"
-          />
+          <div className="overflow-hidden rounded-lg">
+            <img
+              src={screenshot.src}
+              alt={screenshot.alt}
+              loading="lazy"
+              className="w-full rounded-lg transition-transform duration-300 group-hover:scale-[1.02]"
+            />
+          </div>
         </figure>
       ))}
     </div>
