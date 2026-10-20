@@ -1,0 +1,9 @@
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Replace with the actual Harmoniq logo -->
+  <rect x="3" y="3" width="26" height="26" rx="7" fill="#0A0A0C" stroke="#22D3EE" stroke-width="2"/>
+  <!-- Stylized waveform/harmonic bars -->
+  <rect x="9" y="13" width="2" height="6" rx="1" fill="#22D3EE"/>
+  <rect x="13" y="9" width="2" height="14" rx="1" fill="#22D3EE"/>
+  <rect x="17" y="11" width="2" height="10" rx="1" fill="#22D3EE"/>
+  <rect x="21" y="14" width="2" height="4" rx="1" fill="#22D3EE"/>
+</svg>

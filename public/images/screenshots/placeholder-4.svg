@@ -1,0 +1,29 @@
+<svg width="270" height="570" viewBox="0 0 270 570" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="270" height="570" rx="24" fill="#141418"/>
+  <rect x="1" y="1" width="268" height="568" rx="23" stroke="rgba(148,163,184,0.12)" stroke-width="2"/>
+  <rect x="100" y="14" width="70" height="6" rx="3" fill="#2a2a30"/>
+  <!-- Title -->
+  <text x="24" y="70" font-family="Inter, sans-serif" font-size="20" font-weight="600" fill="#f1f5f9">Settings</text>
+  <!-- Setting groups -->
+  <rect x="24" y="100" width="222" height="48" rx="10" fill="#1c1c22"/>
+  <circle cx="48" cy="124" r="8" fill="#22d3ee" opacity="0.2"/>
+  <text x="72" y="122" font-family="Inter, sans-serif" font-size="12" fill="#f1f5f9">Appearance</text>
+  <text x="72" y="136" font-family="Inter, sans-serif" font-size="10" fill="#64748b">Dark theme</text>
+  <rect x="24" y="160" width="222" height="48" rx="10" fill="#1c1c22"/>
+  <circle cx="48" cy="184" r="8" fill="#3b82f6" opacity="0.2"/>
+  <text x="72" y="182" font-family="Inter, sans-serif" font-size="12" fill="#f1f5f9">Audio Quality</text>
+  <text x="72" y="196" font-family="Inter, sans-serif" font-size="10" fill="#64748b">High</text>
+  <rect x="24" y="220" width="222" height="48" rx="10" fill="#1c1c22"/>
+  <circle cx="48" cy="244" r="8" fill="#22d3ee" opacity="0.2"/>
+  <text x="72" y="242" font-family="Inter, sans-serif" font-size="12" fill="#f1f5f9">Downloads</text>
+  <text x="72" y="256" font-family="Inter, sans-serif" font-size="10" fill="#64748b">Wi-Fi only</text>
+  <rect x="24" y="280" width="222" height="48" rx="10" fill="#1c1c22"/>
+  <circle cx="48" cy="304" r="8" fill="#3b82f6" opacity="0.2"/>
+  <text x="72" y="302" font-family="Inter, sans-serif" font-size="12" fill="#f1f5f9">About</text>
+  <text x="72" y="316" font-family="Inter, sans-serif" font-size="10" fill="#64748b">Version — not set</text>
+  <!-- Toggle -->
+  <rect x="200" y="118" width="32" height="16" rx="8" fill="#22d3ee" opacity="0.3"/>
+  <circle cx="222" cy="126" r="6" fill="#22d3ee"/>
+  <text x="135" y="430" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="#475569">Placeholder — Settings</text>
+  <rect x="24" y="550" width="222" height="2" rx="1" fill="#2a2a30"/>
+</svg>

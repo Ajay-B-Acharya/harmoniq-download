@@ -1,0 +1,27 @@
+<svg width="270" height="570" viewBox="0 0 270 570" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="270" height="570" rx="24" fill="#141418"/>
+  <rect x="1" y="1" width="268" height="568" rx="23" stroke="rgba(148,163,184,0.12)" stroke-width="2"/>
+  <rect x="100" y="14" width="70" height="6" rx="3" fill="#2a2a30"/>
+  <!-- Back arrow -->
+  <path d="M30 40 L24 46 L30 52" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <!-- Album art -->
+  <rect x="55" y="80" width="160" height="160" rx="16" fill="#1c1c22" stroke="rgba(34,211,238,0.15)" stroke-width="2"/>
+  <circle cx="135" cy="160" r="20" fill="#22d3ee" opacity="0.15"/>
+  <circle cx="135" cy="160" r="8" fill="#22d3ee" opacity="0.3"/>
+  <!-- Track info -->
+  <text x="135" y="270" text-anchor="middle" font-family="Inter, sans-serif" font-size="16" font-weight="600" fill="#f1f5f9">Track Title</text>
+  <text x="135" y="292" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" fill="#64748b">Artist Name</text>
+  <!-- Progress bar -->
+  <rect x="35" y="320" width="200" height="4" rx="2" fill="#2a2a30"/>
+  <rect x="35" y="320" width="80" height="4" rx="2" fill="#22d3ee"/>
+  <circle cx="115" cy="322" r="6" fill="#22d3ee"/>
+  <text x="35" y="345" font-family="Inter, sans-serif" font-size="10" fill="#64748b">1:23</text>
+  <text x="235" y="345" text-anchor="end" font-family="Inter, sans-serif" font-size="10" fill="#64748b">3:45</text>
+  <!-- Controls -->
+  <circle cx="135" cy="400" r="32" fill="#1c1c22" stroke="rgba(34,211,238,0.25)" stroke-width="2"/>
+  <path d="M127 388 L127 412 L147 400 Z" fill="#22d3ee"/>
+  <path d="M85 388 L85 412 L75 400 Z" fill="#94a3b8"/>
+  <path d="M185 388 L185 412 L195 400 Z" fill="#94a3b8"/>
+  <text x="135" y="480" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="#475569">Placeholder — Now Playing</text>
+  <rect x="24" y="550" width="222" height="2" rx="1" fill="#2a2a30"/>
+</svg>

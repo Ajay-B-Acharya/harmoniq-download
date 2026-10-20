@@ -1,0 +1,93 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Design Tokens ─────────────────────────────────────────────── */
+:root {
+  /* Backgrounds */
+  --color-bg-base: #0a0a0c; /* near-black */
+  --color-bg-surface: #141418; /* slightly lighter charcoal */
+  --color-bg-elevated: #1c1c22; /* elevated cards */
+
+  /* Accents */
+  --color-accent-primary: #22d3ee; /* electric cyan */
+  --color-accent-secondary: #3b82f6; /* subtle blue */
+  --color-accent-hover: #06b6d4; /* darker cyan for hover */
+
+  /* Text */
+  --color-text-primary: #f1f5f9; /* soft white */
+  --color-text-secondary: #94a3b8; /* muted gray */
+  --color-text-muted: #64748b; /* dimmer gray */
+
+  /* Borders */
+  --color-border-subtle: rgba(148, 163, 184, 0.12);
+  --color-border-accent: rgba(34, 211, 238, 0.35);
+}
+
+/* ── Base ─────────────────────────────────────────────────────── */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-bg-base text-text-primary font-sans antialiased;
+    min-height: 100vh;
+  }
+
+  /* Visible focus indicator for keyboard users */
+  :focus-visible {
+    outline: 2px solid var(--color-accent-primary);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  /* Scrollbar styling */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--color-bg-base);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-bg-elevated);
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-border-subtle);
+  }
+}
+
+/* ── Components ───────────────────────────────────────────────── */
+@layer components {
+  /* Consistent horizontal container */
+  .container-px {
+    @apply mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8;
+  }
+
+  /* Section vertical spacing */
+  .section-py {
+    @apply py-16 sm:py-20 lg:py-28;
+  }
+
+  /* Card surface */
+  .surface-card {
+    @apply rounded-2xl border border-border-subtle bg-bg-surface transition-colors duration-200;
+  }
+
+  .surface-elevated {
+    @apply rounded-2xl border border-border-subtle bg-bg-elevated transition-colors duration-200;
+  }
+}
+
+/* ── Reduced Motion ───────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
