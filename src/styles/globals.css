@@ -2,154 +2,310 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ── Design Tokens ─────────────────────────────────────────────── */
+/* ── Dark Neumorphism Design Tokens ────────────────────────────── */
 :root {
-  /* Backgrounds */
-  --color-bg-base: #0a0a0c; /* near-black */
-  --color-bg-surface: #121216; /* dark graphite */
-  --color-bg-elevated: #1a1a20; /* elevated cards */
+  /* Base surface — the single flat background everything sits on */
+  --nm-base: #1e1e2a;
 
-  /* Accents */
-  --color-accent-primary: #22d3ee; /* electric cyan */
-  --color-accent-secondary: #3b82f6; /* muted blue */
-  --color-accent-hover: #06b6d4; /* darker cyan for hover */
+  /* Shadow pair — light highlight and dark shadow for neumorphic depth */
+  --nm-shadow-light: rgba(255, 255, 255, 0.055);
+  --nm-shadow-dark: rgba(0, 0, 0, 0.55);
+
+  /* Accent — warm orange-red matching the Harmoniq app palette */
+  --nm-accent: #ff6b35;
+  --nm-accent-dim: rgba(255, 107, 53, 0.18);
+  --nm-accent-glow: rgba(255, 107, 53, 0.30);
 
   /* Text */
-  --color-text-primary: #f1f5f9; /* soft white */
-  --color-text-secondary: #94a3b8; /* cool gray */
-  --color-text-muted: #64748b; /* dimmer gray */
+  --nm-text-primary: #e8eaf0;
+  --nm-text-secondary: #9da3b4;
+  --nm-text-muted: #5c6278;
 
-  /* Borders */
-  --color-border-subtle: rgba(148, 163, 184, 0.1);
-  --color-border-strong: rgba(148, 163, 184, 0.18);
-  --color-border-accent: rgba(34, 211, 238, 0.3);
+  /* Borders (very subtle — neumorphism relies on shadows, not borders) */
+  --nm-border-subtle: rgba(255, 255, 255, 0.05);
+  --nm-border-accent: rgba(255, 107, 53, 0.35);
 
-  /* Typography Scale */
-  --font-size-xs: 0.75rem; /* 12px */
-  --font-size-sm: 0.875rem; /* 14px */
-  --font-size-base: 1rem; /* 16px */
-  --font-size-lg: 1.125rem; /* 18px */
-  --font-size-xl: 1.25rem; /* 20px */
-  --font-size-2xl: 1.5rem; /* 24px */
-  --font-size-3xl: 1.875rem; /* 30px */
-  --font-size-4xl: 2.25rem; /* 36px */
-  --font-size-5xl: 3rem; /* 48px */
+  /* Neumorphic shadow presets */
+  /* Raised: element pops out of the surface */
+  --nm-raised: 6px 6px 14px var(--nm-shadow-dark),
+               -4px -4px 10px var(--nm-shadow-light);
+  /* Pressed / inset: element pushed into the surface */
+  --nm-inset: inset 4px 4px 10px var(--nm-shadow-dark),
+              inset -3px -3px 8px var(--nm-shadow-light);
+  /* Soft raised — for cards */
+  --nm-card: 8px 8px 18px var(--nm-shadow-dark),
+             -5px -5px 12px var(--nm-shadow-light);
+  /* Accent glow — for CTA buttons */
+  --nm-accent-raised: 6px 6px 14px var(--nm-shadow-dark),
+                      -4px -4px 10px var(--nm-shadow-light),
+                      0 0 18px var(--nm-accent-glow);
 }
 
-/* ── Base ─────────────────────────────────────────────────────── */
+/* ── Base ──────────────────────────────────────────────────────── */
 @layer base {
   html {
     scroll-behavior: smooth;
   }
 
   body {
-    @apply bg-bg-base text-text-primary font-sans antialiased;
+    background-color: var(--nm-base);
+    color: var(--nm-text-primary);
+    font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
     min-height: 100vh;
   }
 
-  /* Visible focus indicator for keyboard users */
   :focus-visible {
-    outline: 2px solid var(--color-accent-primary);
-    outline-offset: 2px;
-    border-radius: 2px;
-  }
-
-  /* Scrollbar styling */
-  ::-webkit-scrollbar {
-    width: 8px;
-  }
-  ::-webkit-scrollbar-track {
-    background: var(--color-bg-base);
-  }
-  ::-webkit-scrollbar-thumb {
-    background: var(--color-bg-elevated);
+    outline: 2px solid var(--nm-accent);
+    outline-offset: 3px;
     border-radius: 4px;
   }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--nm-base);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 3px;
+  }
   ::-webkit-scrollbar-thumb:hover {
-    background: var(--color-border-strong);
+    background: rgba(255, 255, 255, 0.14);
   }
 }
 
-/* ── Components ───────────────────────────────────────────────── */
+/* ── Neumorphic Component Utilities ────────────────────────────── */
 @layer components {
-  /* Consistent horizontal container */
+
+  /* Layout helpers */
   .container-px {
     @apply mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8;
   }
-
-  /* Section vertical spacing */
   .section-py {
     @apply py-16 sm:py-20 lg:py-24;
   }
 
-  /* Card surface */
-  .surface-card {
-    @apply rounded-2xl border border-border-subtle bg-bg-surface transition-all duration-200;
+  /* ── Raised card surface (pops out of page) */
+  .nm-card {
+    background-color: var(--nm-base);
+    border-radius: 1.25rem;
+    box-shadow: var(--nm-card);
   }
 
-  .surface-elevated {
-    @apply rounded-2xl border border-border-subtle bg-bg-elevated transition-all duration-200;
+  /* ── Flat inset panel (sunken into page) */
+  .nm-inset {
+    background-color: var(--nm-base);
+    border-radius: 1rem;
+    box-shadow: var(--nm-inset);
   }
 
-  /* Nav link with animated underline */
-  .nav-link {
-    @apply relative text-sm text-text-secondary transition-colors duration-200 hover:text-text-primary;
+  /* ── Pill / small raised element */
+  .nm-raised {
+    background-color: var(--nm-base);
+    border-radius: 0.75rem;
+    box-shadow: var(--nm-raised);
   }
-  .nav-link::after {
+
+  /* ── Eyebrow label chip */
+  .nm-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.3rem 0.85rem;
+    border-radius: 999px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--nm-accent);
+    background-color: var(--nm-accent-dim);
+    box-shadow: var(--nm-inset);
+  }
+
+  /* ── Primary accent button */
+  .nm-btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.8rem 1.75rem;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #fff;
+    background: linear-gradient(135deg, #ff6b35 0%, #e8502a 100%);
+    box-shadow: var(--nm-accent-raised);
+    transition: box-shadow 0.2s ease, transform 0.15s ease;
+    white-space: nowrap;
+  }
+  .nm-btn-primary:hover {
+    box-shadow: 8px 8px 20px var(--nm-shadow-dark),
+                -5px -5px 12px var(--nm-shadow-light),
+                0 0 26px var(--nm-accent-glow);
+    transform: translateY(-1px);
+  }
+  .nm-btn-primary:active {
+    box-shadow: var(--nm-inset);
+    transform: translateY(0);
+  }
+
+  /* Large variant */
+  .nm-btn-primary-lg {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 1rem 2.25rem;
+    border-radius: 999px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #fff;
+    background: linear-gradient(135deg, #ff6b35 0%, #e8502a 100%);
+    box-shadow: var(--nm-accent-raised);
+    transition: box-shadow 0.2s ease, transform 0.15s ease;
+    white-space: nowrap;
+  }
+  .nm-btn-primary-lg:hover {
+    box-shadow: 8px 8px 20px var(--nm-shadow-dark),
+                -5px -5px 12px var(--nm-shadow-light),
+                0 0 30px var(--nm-accent-glow);
+    transform: translateY(-1px);
+  }
+  .nm-btn-primary-lg:active {
+    box-shadow: var(--nm-inset);
+    transform: translateY(0);
+  }
+
+  /* ── Ghost / secondary button */
+  .nm-btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.8rem 1.75rem;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--nm-text-secondary);
+    background-color: var(--nm-base);
+    box-shadow: var(--nm-raised);
+    transition: color 0.2s ease, box-shadow 0.2s ease;
+    white-space: nowrap;
+  }
+  .nm-btn-ghost:hover {
+    color: var(--nm-text-primary);
+    box-shadow: 8px 8px 20px var(--nm-shadow-dark),
+                -5px -5px 12px var(--nm-shadow-light);
+  }
+
+  /* Large ghost variant */
+  .nm-btn-ghost-lg {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 1rem 2.25rem;
+    border-radius: 999px;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--nm-text-secondary);
+    background-color: var(--nm-base);
+    box-shadow: var(--nm-raised);
+    transition: color 0.2s ease, box-shadow 0.2s ease;
+    white-space: nowrap;
+  }
+  .nm-btn-ghost-lg:hover {
+    color: var(--nm-text-primary);
+    box-shadow: 8px 8px 20px var(--nm-shadow-dark),
+                -5px -5px 12px var(--nm-shadow-light);
+  }
+
+  /* ── Disabled button */
+  .nm-btn-disabled {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.8rem 1.75rem;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--nm-text-muted);
+    background-color: var(--nm-base);
+    box-shadow: var(--nm-inset);
+    cursor: not-allowed;
+    white-space: nowrap;
+  }
+  .nm-btn-disabled-lg {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 1rem 2.25rem;
+    border-radius: 999px;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--nm-text-muted);
+    background-color: var(--nm-base);
+    box-shadow: var(--nm-inset);
+    cursor: not-allowed;
+    white-space: nowrap;
+  }
+
+  /* ── Icon container — small raised circle/square */
+  .nm-icon-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--nm-base);
+    box-shadow: var(--nm-raised);
+    border-radius: 0.875rem;
+  }
+
+  /* ── Nav link */
+  .nm-nav-link {
+    position: relative;
+    font-size: 0.875rem;
+    color: var(--nm-text-secondary);
+    transition: color 0.2s ease;
+  }
+  .nm-nav-link:hover {
+    color: var(--nm-text-primary);
+  }
+  .nm-nav-link::after {
     content: '';
-    @apply absolute -bottom-1 left-0 h-px w-0 bg-accent-primary transition-all duration-200;
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    border-radius: 1px;
+    background: var(--nm-accent);
+    transition: width 0.2s ease;
   }
-  .nav-link:hover::after {
-    @apply w-full;
-  }
-  .nav-link:focus-visible::after {
-    @apply w-full;
-  }
-
-  /* Primary button — bordered, no pill */
-  .btn-primary {
-    @apply inline-flex items-center justify-center gap-2 border px-5 py-2.5 text-sm font-medium transition-all duration-200;
-    border-color: var(--color-border-accent);
-    background-color: rgba(34, 211, 238, 0.1);
-    color: var(--color-accent-primary);
-  }
-  .btn-primary:hover {
-    background-color: rgba(34, 211, 238, 0.15);
-    border-color: var(--color-accent-primary);
-  }
-  .btn-primary-lg {
-    @apply inline-flex items-center justify-center gap-2 border px-7 py-3.5 text-base font-medium transition-all duration-200;
-    border-color: var(--color-border-accent);
-    background-color: rgba(34, 211, 238, 0.1);
-    color: var(--color-accent-primary);
-  }
-  .btn-primary-lg:hover {
-    background-color: rgba(34, 211, 238, 0.15);
-    border-color: var(--color-accent-primary);
+  .nm-nav-link:hover::after,
+  .nm-nav-link:focus-visible::after {
+    width: 100%;
   }
 
-  /* Secondary / text button */
-  .btn-secondary {
-    @apply inline-flex items-center gap-2 px-5 py-2.5 text-sm font-medium text-text-secondary transition-colors duration-200 hover:text-text-primary;
-  }
-  .btn-secondary-lg {
-    @apply inline-flex items-center gap-2 px-6 py-3.5 text-base font-medium text-text-secondary transition-colors duration-200 hover:text-text-primary;
-  }
-
-  /* Disabled button state */
-  .btn-disabled {
-    @apply inline-flex cursor-not-allowed items-center justify-center gap-2 border border-border-subtle bg-bg-surface px-5 py-2.5 text-sm font-medium text-text-muted;
-  }
-  .btn-disabled-lg {
-    @apply inline-flex cursor-not-allowed items-center justify-center gap-2 border border-border-subtle bg-bg-surface px-7 py-3.5 text-base font-medium text-text-muted;
+  /* ── Divider */
+  .nm-divider {
+    border: none;
+    height: 1px;
+    background: linear-gradient(to right,
+      transparent,
+      rgba(255, 255, 255, 0.06) 30%,
+      rgba(255, 255, 255, 0.06) 70%,
+      transparent
+    );
   }
 }
 
-/* ── Reduced Motion ───────────────────────────────────────────── */
+/* ── Reduced Motion ─────────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
+  *, *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;

@@ -4,24 +4,19 @@ export default {
   theme: {
     extend: {
       colors: {
-        bg: {
-          base: 'var(--color-bg-base)',
-          surface: 'var(--color-bg-surface)',
-          elevated: 'var(--color-bg-elevated)',
-        },
-        accent: {
-          primary: 'var(--color-accent-primary)',
-          secondary: 'var(--color-accent-secondary)',
-          hover: 'var(--color-accent-hover)',
+        nm: {
+          base: 'var(--nm-base)',
+          accent: 'var(--nm-accent)',
+          'accent-dim': 'var(--nm-accent-dim)',
         },
         text: {
-          primary: 'var(--color-text-primary)',
-          secondary: 'var(--color-text-secondary)',
-          muted: 'var(--color-text-muted)',
+          primary: 'var(--nm-text-primary)',
+          secondary: 'var(--nm-text-secondary)',
+          muted: 'var(--nm-text-muted)',
         },
         border: {
-          subtle: 'var(--color-border-subtle)',
-          accent: 'var(--color-border-accent)',
+          subtle: 'var(--nm-border-subtle)',
+          accent: 'var(--nm-border-accent)',
         },
       },
       fontFamily: {
@@ -35,9 +30,10 @@ export default {
         ],
       },
       borderRadius: {
-        'xl': '0.75rem',
+        xl: '0.75rem',
         '2xl': '1rem',
         '3xl': '1.5rem',
+        '4xl': '2rem',
       },
       animation: {
         'fade-in': 'fadeIn 0.4s ease-out',

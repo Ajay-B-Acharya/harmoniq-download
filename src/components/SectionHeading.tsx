@@ -13,23 +13,26 @@ export default function SectionHeading({
   align = 'center',
   as: HeadingTag = 'h2',
 }: SectionHeadingProps) {
-  const alignmentClasses =
-    align === 'center'
-      ? 'text-center mx-auto'
-      : 'text-left';
+  const alignClass = align === 'center' ? 'text-center mx-auto' : 'text-left';
 
   return (
-    <div className={`max-w-2xl ${alignmentClasses}`}>
+    <div className={`max-w-2xl ${alignClass}`}>
       {eyebrow && (
-        <p className="mb-3 text-xs font-medium uppercase tracking-[0.15em] text-accent-primary">
-          {eyebrow}
-        </p>
+        <div className="mb-4 flex justify-center" style={align === 'left' ? { justifyContent: 'flex-start' } : {}}>
+          <span className="nm-chip">{eyebrow}</span>
+        </div>
       )}
-      <HeadingTag className="text-2xl font-semibold tracking-tight text-text-primary sm:text-3xl">
+      <HeadingTag
+        className="text-2xl font-semibold tracking-tight sm:text-3xl"
+        style={{ color: 'var(--nm-text-primary)' }}
+      >
         {title}
       </HeadingTag>
       {description && (
-        <p className="mt-4 text-base leading-relaxed text-text-secondary">
+        <p
+          className="mt-4 text-base leading-relaxed"
+          style={{ color: 'var(--nm-text-secondary)' }}
+        >
           {description}
         </p>
       )}

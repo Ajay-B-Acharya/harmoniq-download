@@ -12,7 +12,6 @@ const NAV_LINKS = [
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
-  // Close mobile menu when the viewport grows to desktop.
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 768) setIsOpen(false);
@@ -21,7 +20,6 @@ export default function Navbar() {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Prevent body scroll when the mobile menu is open.
   useEffect(() => {
     document.body.style.overflow = isOpen ? 'hidden' : '';
     return () => {
@@ -29,13 +27,15 @@ export default function Navbar() {
     };
   }, [isOpen]);
 
-  const handleNavClick = useCallback(() => {
-    setIsOpen(false);
-  }, []);
+  const handleNavClick = useCallback(() => setIsOpen(false), []);
 
   return (
     <header
-      className="sticky top-0 z-50 border-b border-border-subtle bg-bg-base/85 backdrop-blur-md"
+      className="sticky top-0 z-50"
+      style={{
+        backgroundColor: 'var(--nm-base)',
+        boxShadow: '0 4px 14px rgba(0,0,0,0.45), 0 -1px 0 rgba(255,255,255,0.04) inset',
+      }}
       role="banner"
     >
       <nav
@@ -45,17 +45,22 @@ export default function Navbar() {
         {/* Brand */}
         <a
           href="#home"
-          className="flex items-center gap-2.5 text-text-primary transition-opacity hover:opacity-80"
+          className="flex items-center gap-2.5 transition-opacity hover:opacity-80"
+          style={{ color: 'var(--nm-text-primary)' }}
           aria-label={`${appConfig.name} home`}
         >
-          <img
-            src="/logo.svg"
-            alt={`${appConfig.name} logo`}
-            width={28}
-            height={28}
-            className="h-7 w-7"
-          />
-          <span className="text-lg font-semibold tracking-tight">
+          <div
+            className="nm-icon-wrap h-9 w-9"
+          >
+            <img
+              src="/logo.svg"
+              alt={`${appConfig.name} logo`}
+              width={22}
+              height={22}
+              className="h-[22px] w-[22px]"
+            />
+          </div>
+          <span className="text-lg font-semibold tracking-tight" style={{ color: 'var(--nm-text-primary)' }}>
             {appConfig.name}
           </span>
         </a>
@@ -64,30 +69,27 @@ export default function Navbar() {
         <ul className="hidden items-center gap-8 md:flex">
           {NAV_LINKS.map((link) => (
             <li key={link.href}>
-              <a href={link.href} className="nav-link">
+              <a href={link.href} className="nm-nav-link">
                 {link.label}
               </a>
             </li>
           ))}
         </ul>
 
-        {/* Desktop download button */}
+        {/* Desktop download CTA */}
         <div className="hidden md:block">
-          <a
-            href="#download"
-            className="btn-primary"
-            aria-label="Download Harmoniq"
-          >
-            <Download size={16} aria-hidden="true" />
+          <a href="#download" className="nm-btn-primary" aria-label="Download Harmoniq">
+            <Download size={15} aria-hidden="true" />
             Download
           </a>
         </div>
 
-        {/* Mobile toggle */}
+        {/* Mobile hamburger */}
         <button
           type="button"
           onClick={() => setIsOpen((prev) => !prev)}
-          className="flex items-center justify-center p-2 text-text-primary transition-colors hover:text-accent-primary md:hidden"
+          className="flex items-center justify-center p-2 transition-colors md:hidden"
+          style={{ color: 'var(--nm-text-primary)' }}
           aria-label={isOpen ? 'Close menu' : 'Open menu'}
           aria-expanded={isOpen}
           aria-controls="mobile-menu"
@@ -100,7 +102,11 @@ export default function Navbar() {
       {isOpen && (
         <div
           id="mobile-menu"
-          className="border-t border-border-subtle bg-bg-base md:hidden"
+          className="md:hidden"
+          style={{
+            backgroundColor: 'var(--nm-base)',
+            boxShadow: '0 8px 20px rgba(0,0,0,0.4)',
+          }}
         >
           <ul className="container-px flex flex-col gap-1 py-4">
             {NAV_LINKS.map((link) => (
@@ -108,19 +114,28 @@ export default function Navbar() {
                 <a
                   href={link.href}
                   onClick={handleNavClick}
-                  className="block rounded-lg px-3 py-3 text-sm text-text-secondary transition-colors hover:bg-bg-surface hover:text-text-primary"
+                  className="block rounded-xl px-4 py-3 text-sm transition-all"
+                  style={{ color: 'var(--nm-text-secondary)' }}
+                  onMouseEnter={(e) => {
+                    (e.currentTarget as HTMLElement).style.color = 'var(--nm-text-primary)';
+                    (e.currentTarget as HTMLElement).style.boxShadow = 'var(--nm-inset)';
+                  }}
+                  onMouseLeave={(e) => {
+                    (e.currentTarget as HTMLElement).style.color = 'var(--nm-text-secondary)';
+                    (e.currentTarget as HTMLElement).style.boxShadow = 'none';
+                  }}
                 >
                   {link.label}
                 </a>
               </li>
             ))}
-            <li className="mt-2">
+            <li className="mt-3">
               <a
                 href="#download"
                 onClick={handleNavClick}
-                className="btn-primary w-full justify-center"
+                className="nm-btn-primary w-full"
               >
-                <Download size={16} aria-hidden="true" />
+                <Download size={15} aria-hidden="true" />
                 Download
               </a>
             </li>
