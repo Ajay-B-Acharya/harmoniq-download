@@ -42,10 +42,10 @@ export const features: Feature[] = [
     description: 'Access supported downloaded music when offline.',
   },
   {
-    id: 'spatial-ui',
+    id: 'intuitive-navigation',
     icon: LayoutGrid,
-    title: 'Spatial UI',
-    description: 'Experience a distinctive interface inspired by spatial design.',
+    title: 'Intuitive Navigation',
+    description: 'Navigate effortlessly between your library, search, and playlists with a clean tab-based layout.',
   },
   {
     id: 'personalized-experience',

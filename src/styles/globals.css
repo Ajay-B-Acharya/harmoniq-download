@@ -5,7 +5,7 @@
 /* ── Dark Neumorphism Design Tokens ────────────────────────────── */
 :root {
   /* Base surface — the single flat background everything sits on */
-  --nm-base: #1e1e2a;
+  --nm-base: #181818;
 
   /* Shadow pair — light highlight and dark shadow for neumorphic depth */
   --nm-shadow-light: rgba(255, 255, 255, 0.055);
