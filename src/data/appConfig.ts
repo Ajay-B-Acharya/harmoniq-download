@@ -75,24 +75,26 @@ export const appConfig: AppConfig = {
   contactEmail: readEnv('VITE_CONTACT_EMAIL'),
 
   // --- Screenshots ---
-  // Replace with real paths once screenshots are added to
-  // public/images/screenshots/
   screenshots: [
     {
-      src: '/images/screenshots/placeholder-1.svg',
-      alt: 'Harmoniq home screen — placeholder',
+      src: '/images/screenshots/screenshot-home.jpeg',
+      alt: 'Harmoniq home screen showing recently played tracks and recommendations',
     },
     {
-      src: '/images/screenshots/placeholder-2.svg',
-      alt: 'Harmoniq music library — placeholder',
+      src: '/images/screenshots/screenshot-explore.jpeg',
+      alt: 'Harmoniq explore screen with popular genres, trending playlists, and moods',
     },
     {
-      src: '/images/screenshots/placeholder-3.svg',
-      alt: 'Harmoniq now playing screen — placeholder',
+      src: '/images/screenshots/screenshot-search.jpeg',
+      alt: 'Harmoniq search screen with category browsing and trending searches',
     },
     {
-      src: '/images/screenshots/placeholder-4.svg',
-      alt: 'Harmoniq settings screen — placeholder',
+      src: '/images/screenshots/screenshot-search-2.jpeg',
+      alt: 'Harmoniq search screen showing All, Local, and Online filter tabs',
+    },
+    {
+      src: '/images/screenshots/screenshot-profile.jpeg',
+      alt: 'Harmoniq profile screen with listening stats, activities, and settings',
     },
   ],
 };
